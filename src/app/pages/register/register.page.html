@@ -1,0 +1,52 @@
+<!-- <ion-header translucent="true" >
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-back-button color="medium"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <div class="form-container">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+          <ion-avatar class="img-registration">
+            <img [src]="registerImg">
+          </ion-avatar>
+          <ion-item class="roundedInput">
+            <ion-input required name="email" formControlName="email" type="text" placeholder="Email" color="medium" style="text-align:center"></ion-input>
+          </ion-item>
+          <!-- Error messages -->
+          <span *ngIf="!loginForm.controls.email.valid &&
+            loginForm.controls.email.dirty"
+            class="validator-error">
+              Debe ingresar un mail valido.
+          </span>
+          <ion-item class="roundedInput">
+            <ion-input required name="user" formControlName="user" type="text" placeholder="Usuario" color="medium" style="text-align:center"></ion-input>
+          </ion-item>
+          <!-- Error messages -->
+          <span *ngIf="!loginForm.controls.user.valid &&
+            loginForm.controls.user.dirty"
+            class="validator-error">
+              El usuario debe contener al menos 3 caracteres y no debe contener caracteres especiales.
+          </span>
+          <ion-item class="roundedInput">
+            <ion-input #passwordEyeRegister  [type]="passwordTypeInput" required name="password" formControlName="password"  clearOnEdit="false" placeholder="Contraseña" color="medium" style="text-align:center"></ion-input>
+            <button  item-end  class="btn_eye_icon"  (click)="togglePasswordMode()">
+              <ion-icon  [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
+            </button>
+          </ion-item> 
+          <div>
+            <ion-button expand="block" shape="round" color="medium" type="submit" [disabled]="loginForm.invalid">
+            Registrarse
+          </ion-button>
+          </div>
+        </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
