@@ -1,0 +1,36 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-content>
+  <div>
+    <ion-avatar class="image-center">
+      <img [src]="imglogin">
+    </ion-avatar>    
+  </div>
+  <div class="form-container">
+    <form action="">
+      <ion-item class="roundedInput">
+        <ion-input placeholder="Usuario" style="text-align:center"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input #passwordEyeRegister  [type]="passwordTypeInput"   clearOnEdit="false" placeholder="Contraseña" style="text-align:center"></ion-input>
+        <button  item-end  class="btn_eye_icon"  (click)="togglePasswordMode()">
+          <ion-icon  [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
+        </button>
+      </ion-item> 
+      <ion-button  (click)="onClick()" expand="block" shape="round" color="medium">
+          Login
+      </ion-button>
+    </form>
+  </div>
+  <div class="center" >
+    <ion-label routerLink="/home">Create Account</ion-label>
+  </div>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <div class="center">
+    <ion-label >Forgot password?</ion-label>
+  </div>
+</ion-footer>
