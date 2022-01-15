@@ -1,3 +1,4 @@
+import { CustomToastService } from './../../services/custom-toast.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 
@@ -14,13 +15,14 @@ export class LoginPage implements OnInit {
   passwordTypeInput  =  'password';
   iconpassword  =  'eye-off';
 
-  constructor() { }
+  constructor(public Toast:CustomToastService) { }
 
   ngOnInit() {
   }
 
   onClick(){
-    
+    console.log("Intentar iniciar seción")
+    this.Toast.presentToast('User or Password Invalid','danger','top');
   }
 
   togglePasswordMode() {
@@ -38,4 +40,5 @@ export class LoginPage implements OnInit {
     }, 1);
   }
 
+  
 }
