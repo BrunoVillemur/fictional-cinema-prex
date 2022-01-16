@@ -1,5 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CustomToastService } from './../../services/custom-toast.service';
+import { LocalStorageService } from './../../services/local-storage.service';
+import { User } from './../../interfaces/interfaces';
+import { Component,OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,12 +13,13 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class RegisterPage implements OnInit {
 
   registerImg: String = '/assets/img/register-img.png'
-  loginForm = this.formBuilder.group({
+  
+  registerForm = this.formBuilder.group({
     email: [
       "",
       [
         Validators.required,
-        Validators.pattern("^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$"),
+        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"),
 
       ],
     ],
@@ -37,34 +42,36 @@ export class RegisterPage implements OnInit {
     ],
   });
 
-  @ViewChild('passwordEyeRegister', { read: ElementRef }) passwordEye: ElementRef;
-  passwordTypeInput  =  'password';
-  iconpassword  =  'eye-off';
+  
 
-  constructor(private formBuilder: FormBuilder) { }
+
+  constructor(private formBuilder: FormBuilder,
+              private localStorageService: LocalStorageService,
+              private customToastService: CustomToastService,
+              private router: Router
+             ) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    console.log(this.loginForm.get("user")["value"])
+    if (!this.registerForm.valid) {
+      return false;
+    } else {
+      const userRegister:User = {
+        email: this.registerForm.get("email")["value"],
+        userName: this.registerForm.get("user")["value"],
+        password: this.registerForm.get("password")["value"],
+        img: '/assets/img/Placeholder_img_login.png',
+      };
+      this.localStorageService.saveUser(userRegister).then((data)=>{
+        if(data){
+          this.router.navigate(["login"])
+        }else{
+          this.customToastService.presentToast("El Email ya está Registrado","danger","top");
+        }
+      });
+    }
   }
-
-  togglePasswordMode() {
-    //cambiar tipo input
-    this.passwordTypeInput = this.passwordTypeInput === 'text' ? 'password' : 'text';
-    //obtener el input
-    const nativeEl = this.passwordEye.nativeElement.querySelector('input');
-    //obtener el indice de la posición del texto actual en el input
-    const inputSelection = nativeEl.selectionStart;
-    //ejecuto el focus al input
-    nativeEl.focus();
-    //espero un milisegundo y actualizo la posición del indice del texto
-    setTimeout(() => {
-       nativeEl.setSelectionRange(inputSelection, inputSelection);
-    }, 1);
-  }
-
   
-
 }

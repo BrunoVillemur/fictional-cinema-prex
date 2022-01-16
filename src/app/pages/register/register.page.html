@@ -11,36 +11,41 @@
     <ion-row>
       <ion-col size="12">
         <div class="form-container">
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+          <form #formRegister="ngForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
           <ion-avatar class="img-registration">
             <img [src]="registerImg">
           </ion-avatar>
           <ion-item class="roundedInput">
-            <ion-input required name="email" formControlName="email" type="text" placeholder="Email" color="medium" style="text-align:center"></ion-input>
+            <ion-input 
+                       required id="email" 
+                       name="email" 
+                       formControlName="email" 
+                       type="text" 
+                       placeholder="Email" 
+                       color="medium" 
+                       style="text-align:center">
+            </ion-input>
           </ion-item>
           <!-- Error messages -->
-          <span *ngIf="!loginForm.controls.email.valid &&
-            loginForm.controls.email.dirty"
+          <span *ngIf="!registerForm.controls.email.valid &&
+          registerForm.controls.email.dirty"
             class="validator-error">
               Debe ingresar un mail valido.
           </span>
           <ion-item class="roundedInput">
-            <ion-input required name="user" formControlName="user" type="text" placeholder="Usuario" color="medium" style="text-align:center"></ion-input>
+            <ion-input  required name="user" formControlName="user" type="text" placeholder="Usuario" color="medium" style="text-align:center"></ion-input>
           </ion-item>
           <!-- Error messages -->
-          <span *ngIf="!loginForm.controls.user.valid &&
-            loginForm.controls.user.dirty"
+          <span *ngIf="!registerForm.controls.user.valid &&
+          registerForm.controls.user.dirty"
             class="validator-error">
               El usuario debe contener al menos 3 caracteres y no debe contener caracteres especiales.
           </span>
           <ion-item class="roundedInput">
-            <ion-input #passwordEyeRegister  [type]="passwordTypeInput" required name="password" formControlName="password"  clearOnEdit="false" placeholder="Contraseña" color="medium" style="text-align:center"></ion-input>
-            <button  item-end  class="btn_eye_icon"  (click)="togglePasswordMode()">
-              <ion-icon  [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
-            </button>
+            <ion-input   type="password" required name="password" formControlName="password"  clearOnEdit="false" placeholder="Contraseña" color="medium" style="text-align:center"></ion-input>
           </ion-item> 
           <div>
-            <ion-button expand="block" shape="round" color="medium" type="submit" [disabled]="loginForm.invalid">
+            <ion-button expand="block" shape="round" color="medium" type="submit" [disabled]="registerForm.invalid">
             Registrarse
           </ion-button>
           </div>

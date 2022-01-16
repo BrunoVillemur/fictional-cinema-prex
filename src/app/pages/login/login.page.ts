@@ -1,5 +1,6 @@
 import { CustomToastService } from './../../services/custom-toast.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class LoginPage implements OnInit {
   passwordTypeInput  =  'password';
   iconpassword  =  'eye-off';
 
-  constructor(public Toast:CustomToastService) { }
+  constructor(public Toast:CustomToastService, private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
@@ -40,5 +41,6 @@ export class LoginPage implements OnInit {
     }, 1);
   }
 
+  
   
 }
