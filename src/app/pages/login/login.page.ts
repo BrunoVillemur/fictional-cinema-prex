@@ -1,3 +1,4 @@
+import { ModalForgotPassPage } from './../modal-forgot-pass/modal-forgot-pass.page';
 import { CustomToastService } from './../../services/custom-toast.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
@@ -41,6 +42,17 @@ export class LoginPage implements OnInit {
     }, 1);
   }
 
+  async showModal() {
+    const modal = await this.modalCtrl.create({
+      component: ModalForgotPassPage,
+      cssClass: "my-custom-class",
+      componentProps: {
+        nombre: "Bruno",
+        pais: "Argentina",
+      },
+    });
+    await modal.present();
+  }
   
   
 }
