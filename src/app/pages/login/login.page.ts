@@ -1,7 +1,11 @@
+import { User } from './../../interfaces/interfaces';
+import { FormBuilder, Validators } from '@angular/forms';
+import { LocalStorageService } from './../../services/local-storage.service';
 import { ModalForgotPassPage } from './../modal-forgot-pass/modal-forgot-pass.page';
 import { CustomToastService } from './../../services/custom-toast.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,14 +21,52 @@ export class LoginPage implements OnInit {
   passwordTypeInput  =  'password';
   iconpassword  =  'eye-off';
 
-  constructor(public Toast:CustomToastService, private modalCtrl: ModalController) { }
+  loginForm = this.formBuilder.group({
+    email: [
+      "",
+      [
+        Validators.required,
+        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"),
+
+      ],
+    ],
+    password: [
+      "",
+      [
+        Validators.required,
+        Validators.maxLength(20),
+        Validators.minLength(3),
+      ],
+    ],
+    
+  });
+
+  constructor(private formBuilder: FormBuilder,
+              public Toast:CustomToastService, 
+              private modalCtrl: ModalController,
+              private localStorageService: LocalStorageService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
   onClick(){
-    console.log("Intentar iniciar seción")
-    this.Toast.presentToast('User or Password Invalid','danger','top');
+    const email = this.loginForm.get("email")["value"];
+    const password = this.loginForm.get("password")["value"]
+    
+    // console.log("Intentar iniciar seción")
+    // this.Toast.presentToast('User or Password Invalid','danger','top');
+    this.localStorageService.getUser(email).then((user)=>{
+      if(user === false){
+        this.Toast.presentToast('Email no válido','danger','top');
+      }else{
+        if(user.password === password){
+          this.router.navigate(["movies"])
+        }else{
+          this.Toast.presentToast('Contraseña Incorrecta','danger','top');
+        }
+      }
+    })
   }
 
   togglePasswordMode() {

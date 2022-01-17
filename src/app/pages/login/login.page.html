@@ -10,7 +10,29 @@
     </ion-avatar>    
   </div>
   <div class="form-container">
-    <form action="">
+    <form [formGroup]="loginForm">
+      <ion-item class="roundedInput">
+        <ion-input required id="email" 
+          name="email" 
+          formControlName="email" 
+          type="text" 
+          placeholder="Email" 
+          placeholder="email" 
+          color="medium" 
+          style="text-align:center">
+        </ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input type="password" required name="password" formControlName="password"  clearOnEdit="false" #passwordEyeRegister  [type]="passwordTypeInput"   clearOnEdit="false" placeholder="Contraseña" color="medium" style="text-align:center"></ion-input>
+        <button  item-end  class="btn_eye_icon"  (click)="togglePasswordMode()" >
+          <ion-icon  [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
+        </button>
+      </ion-item> 
+      <ion-button  (click)="onClick()" expand="block" shape="round" color="medium">
+          Login
+      </ion-button>
+    </form>
+    <!-- <form  >
       <ion-item class="roundedInput">
         <ion-input placeholder="Usuario" color="medium" style="text-align:center"></ion-input>
       </ion-item>
@@ -23,7 +45,7 @@
       <ion-button  (click)="onClick()" expand="block" shape="round" color="medium">
           Login
       </ion-button>
-    </form>
+    </form> -->
   </div>
   <div class="center" >
     <ion-label routerLink="/register">Create Account</ion-label>

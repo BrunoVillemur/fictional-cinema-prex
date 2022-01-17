@@ -40,4 +40,12 @@ export class LocalStorageService {
       this.users = users;
     }
   }
+  async getUser(email:string){
+    const exist = this.users.find(item => item.email === email);
+    if(exist){
+      return exist;
+    }else{
+      return false;
+    }
+  }
 }

@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'modal-forgot-pass',
     loadChildren: () => import('./pages/modal-forgot-pass/modal-forgot-pass.module').then( m => m.ModalForgotPassPageModule)
   },
+  {
+    path: 'movies',
+    loadChildren: () => import('./pages/movies/movies.module').then( m => m.MoviesPageModule)
+  },
 ];
 
 @NgModule({
