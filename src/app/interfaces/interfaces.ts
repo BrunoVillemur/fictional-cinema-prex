@@ -4,3 +4,10 @@ export interface User {
     password: string;
     img:string
 }
+export interface Movie {
+    id: number;
+    Titulo: String;
+    Descripcion: String;
+    image: String;
+    valoration;
+}

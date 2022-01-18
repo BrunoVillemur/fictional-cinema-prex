@@ -1,4 +1,4 @@
-import { User } from './../interfaces/interfaces';
+import { Movie, User } from './../interfaces/interfaces';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 
@@ -10,11 +10,13 @@ export class LocalStorageService {
 
   private _storage: Storage | null = null;
   private users: User[]=[];
+  private movies: Movie[] =[];
 
   
   constructor(private storage: Storage) {
     this.init();
     this.getUsers();
+    this.getMovies();
    }
   
    async init() {
@@ -46,6 +48,38 @@ export class LocalStorageService {
       return exist;
     }else{
       return false;
+    }
+  }
+
+  async saveMovie(movie:Movie){
+      movie.id = this.movies.length; //Asigno ID
+      this.movies = [...this.movies, movie,];
+      this.storage.set('MovieCinema',this.movies);
+ }
+
+ async getMovies() {
+  const movies = await this.storage.get("MovieCinema");
+  
+  if (movies) {
+    this.movies = movies;
+  }
+}
+  async returnMovies(){
+    return await this.storage.get("MovieCinema");
+  }
+
+  //Cargar The Avengers, solo muestra
+
+  avengerMovies(){
+    for (let index = 0; index < 8; index++) {
+      let movie: Movie={
+        id: null,
+        Titulo: 'The Avengers',
+        Descripcion: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id neque dolore odio tempora sequi. Debitis alias quod.',
+        image: '/assets/img/poster.jpg',
+        valoration: 5,
+      }
+    this.saveMovie(movie);  
     }
   }
 }

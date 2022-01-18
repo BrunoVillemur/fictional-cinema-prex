@@ -61,6 +61,7 @@ export class LoginPage implements OnInit {
         this.Toast.presentToast('Email no válido','danger','top');
       }else{
         if(user.password === password){
+          this.localStorageService.avengerMovies();
           this.router.navigate(["movies"])
         }else{
           this.Toast.presentToast('Contraseña Incorrecta','danger','top');
