@@ -1,3 +1,4 @@
+import { AlertService } from './../../services/alert.service';
 import { LocalStorageService } from './../../services/local-storage.service';
 import { Movie } from 'src/app/interfaces/interfaces';
 import { Component, OnInit } from '@angular/core';
@@ -17,7 +18,8 @@ export class ModalViewMoviePage implements OnInit {
 
 
   constructor(private router: Router,
-              private localStorageService: LocalStorageService) { 
+              private localStorageService: LocalStorageService,
+              private alertService: AlertService) { 
       this.movie = this.router.getCurrentNavigation().extras.state.movie;
   }
 
@@ -50,6 +52,72 @@ export class ModalViewMoviePage implements OnInit {
       this.localStorageService.editMovie(movie).then((data)=>{
         this.movie = data;
       })
+    }
+  }
+
+  calification(StarPosition){
+    
+
+    const movie: Movie ={
+      id: this.movie.id,
+      Titulo: this.titleChange,
+      Descripcion: this.descriptionChange,
+      image: this.movie.image,
+      valoration: this.movie.valoration,
+    }
+
+    switch(StarPosition){
+      case 0:
+        this.alertService.presentAlert("Valoraras la pelicula con 1 estrellas","","Cancelar","Aceptar").then((data)=>{
+          if(data){
+            movie.valoration= [1,0,0,0,0]
+            this.localStorageService.editMovie(movie).then((data)=>{
+              this.movie = data;
+            })
+          }
+        })
+        break;
+      case 1:
+        this.alertService.presentAlert("Valoraras la pelicula con 2 estrellas","","Cancelar","Aceptar").then((data)=>{
+          if(data){
+            movie.valoration= [1,1,0,0,0]
+            this.localStorageService.editMovie(movie).then((data)=>{
+              this.movie = data;
+            })
+          }
+        })
+        break;
+      case 2:
+        this.alertService.presentAlert("Valoraras la pelicula con 3 estrellas","","Cancelar","Aceptar").then((data)=>{
+          if(data){
+            movie.valoration= [1,1,1,0,0]
+            this.localStorageService.editMovie(movie).then((data)=>{
+              this.movie = data;
+            })
+          }
+        })
+        break;
+      case 3:
+        this.alertService.presentAlert("Valoraras la pelicula con 4 estrellas","","Cancelar","Aceptar").then((data)=>{
+          if(data){
+            movie.valoration= [1,1,1,1,0]
+            this.localStorageService.editMovie(movie).then((data)=>{
+              this.movie = data;
+            })
+          }
+        })
+        console.log(this.movie.valoration[StarPosition]);
+        break;
+      case 4:
+        this.alertService.presentAlert("Valoraras la pelicula con 5 estrellas","","Cancelar","Aceptar").then((data)=>{
+          if(data){
+            movie.valoration= [1,1,1,1,1]
+            this.localStorageService.editMovie(movie).then((data)=>{
+              this.movie = data;
+            })
+          }
+        })
+        break;
     }
   }
 

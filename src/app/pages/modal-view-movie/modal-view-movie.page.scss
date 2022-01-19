@@ -42,3 +42,23 @@ ion-title {
     margin-top: 5%;
     text-align: center;
 }
+.left{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    text-align: left;
+}
+.rating{
+    display: inline-block;
+    margin: auto;
+    margin-left: 3px;
+    font-size: large;
+}
+.btnRating{
+    --width: 60px;
+  --height: 60px;
+  --border-radius: 50%;
+  --vertical-align: middle;
+  --padding-start: 10px;
+  --padding-end: 10px;
+}

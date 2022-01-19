@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" color="medium">
       <ion-button slot="start" (click)="buttonBack()"  fill="clear" shape="round">
         <ion-icon name="chevron-back-outline"></ion-icon>
       </ion-button>
@@ -32,7 +32,16 @@
           <img class="img" [src]="movie.image">
         </div>
         <div class="center">
-          <p>aqui iría el rate, si tuviera uno!</p>
+          <div class="star-container">
+            <div class="rating" *ngFor="let star of movie.valoration, let i=index">
+              <ion-button *ngIf="star === 1" class="btnRating" (click)="calification(i)" fill="clear" shape="round" >
+                 <ion-icon *ngIf="star === 1"   name="star" color="warning"></ion-icon>
+              </ion-button>
+              <ion-button *ngIf="star === 0" class="btnRating" (click)="calification(i)" fill="clear" shape="round">
+                <ion-icon *ngIf="star === 0" class="rating"  name="star-outline" color="medium"></ion-icon>
+             </ion-button>
+            </div>
+          </div>
         </div>
         <div class="center">
           <p *ngIf="edit == false">

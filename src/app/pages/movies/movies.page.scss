@@ -15,9 +15,16 @@ ion-icon {
     text-align: center;
     margin-bottom: 2px;
 }
-.valoration{
-    margin-top: 10%;
-}
 .rating{
-    text-align: center;
+    display: inline-block;
+    margin: auto;
+    margin-left: 3px;
+    font-size: large;
+}
+.star-container{
+    margin: 0%;
+    margin-left: 45% !important;
+}
+.lebel-rating{
+    margin-left: 45% !important;
 }

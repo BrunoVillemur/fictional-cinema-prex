@@ -88,7 +88,7 @@ export class LocalStorageService {
         Titulo: 'The Avengers',
         Descripcion: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id neque dolore odio tempora sequi. Debitis alias quod.',
         image: '/assets/img/poster.jpg',
-        valoration: [0,0,0,0],
+        valoration: [0,0,0,0,0],
       }
     this.saveMovie(movie);  
     }

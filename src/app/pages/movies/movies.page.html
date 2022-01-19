@@ -44,10 +44,14 @@
         <p class="description">{{item.Descripcion}}</p>
       </div>
       <div>
-        <p>Rating:</p>
-        <div class="description"  *ngFor="let star of item.valoration">
-          <ion-icon *ngIf="star === 1" class="rating"  name="star"></ion-icon>
-          <ion-icon *ngIf="star === 0" class="rating"  name="star-outline"></ion-icon>
+        <div class="lebel-rating">
+          <p>Rating:</p>
+        </div>
+        <div class="star-container">
+          <div class="rating"  *ngFor="let star of item.valoration">
+            <ion-icon *ngIf="star === 1" class="rating"  name="star" color="warning"></ion-icon>
+            <ion-icon *ngIf="star === 0" class="rating"  name="star-outline"></ion-icon>
+          </div>
         </div>
       </div>
       
