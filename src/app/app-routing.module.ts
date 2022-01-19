@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'modal-add-movie',
     loadChildren: () => import('./pages/modal-add-movie/modal-add-movie.module').then( m => m.ModalAddMoviePageModule)
   },
+  {
+    path: 'modal-view-movie',
+    loadChildren: () => import('./pages/modal-view-movie/modal-view-movie.module').then( m => m.ModalViewMoviePageModule)
+  },
 ];
 
 @NgModule({

@@ -47,7 +47,7 @@ export class ModalAddMoviePage implements OnInit {
       Titulo: this.addMovieForm.get("title")["value"],
       Descripcion: this.addMovieForm.get("description")["value"],
       image: 'https://dummyimage.com/400x540/fff/aaa', //Se podría configurar un servicio y traerlo desde una api
-      valoration: 5,
+      valoration: [0,0,0,0,0],
     };
     this.localStorageService.saveMovie(movie).then(()=>{
         this.router.navigate(["movies"])

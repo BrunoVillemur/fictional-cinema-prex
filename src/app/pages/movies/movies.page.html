@@ -2,12 +2,12 @@
   <ion-toolbar>
     <ion-title>Movies</ion-title>
     <ion-buttons slot="start">
-      <ion-button (click)="onClick()" color="medium"> 
+      <ion-button (click)="buttonMenu()" color="medium"> 
         <ion-icon slot="start" name="menu"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button (click)="onClick()" color="medium">
+      <ion-button (click)="buttonSerch()" color="medium">
         <ion-icon slot="end" name="search"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -33,7 +33,7 @@
 </ion-content> -->
 
 <ion-content mode="ios" >
-  <ion-card *ngFor="let item of movies">
+  <ion-card *ngFor="let item of movies" (click)="onClick(item)">
       <img conten class="imga" [src]="item.image">
       <ion-card-header>
         <ion-title class="aa">{{item.Titulo}}
@@ -44,9 +44,12 @@
         <p class="description">{{item.Descripcion}}</p>
       </div>
       <div>
-        <p class="description">Aquí va la valoración</p>
+        <p>Rating:</p>
+        <div class="description"  *ngFor="let star of item.valoration">
+          <ion-icon *ngIf="star === 1" class="rating"  name="star"></ion-icon>
+          <ion-icon *ngIf="star === 0" class="rating"  name="star-outline"></ion-icon>
+        </div>
       </div>
-      
       
   </ion-card>
 </ion-content>

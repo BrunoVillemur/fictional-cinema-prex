@@ -68,6 +68,17 @@ export class LocalStorageService {
     return await this.storage.get("MovieCinema");
   }
 
+  async deleteMovie(movieDelete:Movie){
+    this.movies = this.movies.filter((movie) => movie.id != movieDelete.id);
+    this.storage.set("MovieCinema", this.movies);
+  }
+
+  async editMovie(movie:Movie){
+    this.movies[movie.id]=movie;
+    this.storage.set("MovieCinema", this.movies);
+    return this.movies[movie.id];
+  }
+
   //Cargar The Avengers, solo muestra
 
   avengerMovies(){
@@ -77,7 +88,7 @@ export class LocalStorageService {
         Titulo: 'The Avengers',
         Descripcion: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id neque dolore odio tempora sequi. Debitis alias quod.',
         image: '/assets/img/poster.jpg',
-        valoration: 5,
+        valoration: [0,0,0,0],
       }
     this.saveMovie(movie);  
     }

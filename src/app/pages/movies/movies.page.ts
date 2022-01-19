@@ -3,6 +3,7 @@ import { ModalAddMoviePage } from './../modal-add-movie/modal-add-movie.page';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Movie } from 'src/app/interfaces/interfaces';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-movies',
@@ -15,7 +16,8 @@ export class MoviesPage implements OnInit {
   movies:Movie[]=[];
 
   constructor(private modalCtrl: ModalController,
-              private localStorageService: LocalStorageService) {
+              private localStorageService: LocalStorageService,
+              private router: Router) {
                }
 
   ngOnInit() {
@@ -32,7 +34,16 @@ export class MoviesPage implements OnInit {
     });
   }
 
-  onClick(){
+  onClick(Movie:Movie){
+    let navigationExtras: NavigationExtras = {
+      state: { movie:Movie },
+    };
+    this.router.navigate(["modal-view-movie"], navigationExtras);
+  }
+  buttonMenu(){
+
+  }
+  buttonSerch(){
 
   }
 

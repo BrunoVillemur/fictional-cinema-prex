@@ -9,5 +9,5 @@ export interface Movie {
     Titulo: String;
     Descripcion: String;
     image: String;
-    valoration;
+    valoration: number[];
 }
