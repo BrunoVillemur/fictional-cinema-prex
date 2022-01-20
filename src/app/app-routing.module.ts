@@ -31,7 +31,11 @@ const routes: Routes = [
   {
     path: 'modal-view-movie',
     loadChildren: () => import('./pages/modal-view-movie/modal-view-movie.module').then( m => m.ModalViewMoviePageModule)
+  },  {
+    path: 'user',
+    loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
   },
+
 ];
 
 @NgModule({

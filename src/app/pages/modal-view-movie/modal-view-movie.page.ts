@@ -19,13 +19,20 @@ export class ModalViewMoviePage implements OnInit {
 
   constructor(private router: Router,
               private localStorageService: LocalStorageService,
-              private alertService: AlertService) { 
+              private alertService: AlertService)             
+  { 
+      // I load the last movie from the movies page
       this.movie = this.router.getCurrentNavigation().extras.state.movie;
   }
 
   ngOnInit() {
-    this.titleChange=this.movie.Titulo;
-    this.descriptionChange = this.movie.Descripcion;
+    this.movie = this.router.getCurrentNavigation().extras.state.movie;
+    if(this.movie){
+      this.titleChange=this.movie.Titulo;
+      this.descriptionChange = this.movie.Descripcion;
+    }else{
+      this.router.navigate(["login"]);
+    }
   }
 
   buttonBack(){
@@ -33,7 +40,8 @@ export class ModalViewMoviePage implements OnInit {
   }
 
   buttonDelete(){
-    this.localStorageService.deleteMovie(this.movie).then(()=>{
+    this.localStorageService.getEmailUserSession().then((email)=>{
+      this.localStorageService.deleteUserMovie(email,this.movie);
       this.router.navigate(["movies"]);
     })
   }
@@ -49,15 +57,15 @@ export class ModalViewMoviePage implements OnInit {
         image: this.movie.image,
         valoration: this.movie.valoration,
       }
-      this.localStorageService.editMovie(movie).then((data)=>{
-        this.movie = data;
+      this.localStorageService.getEmailUserSession().then((email)=>{
+        this.localStorageService.editUserMovie(email,movie).then((movie)=>{
+          this.movie = movie;
+        });
       })
     }
   }
 
   calification(StarPosition){
-    
-
     const movie: Movie ={
       id: this.movie.id,
       Titulo: this.titleChange,
@@ -71,8 +79,10 @@ export class ModalViewMoviePage implements OnInit {
         this.alertService.presentAlert("Valoraras la pelicula con 1 estrellas","","Cancelar","Aceptar").then((data)=>{
           if(data){
             movie.valoration= [1,0,0,0,0]
-            this.localStorageService.editMovie(movie).then((data)=>{
-              this.movie = data;
+            this.localStorageService.getEmailUserSession().then((email)=>{
+              this.localStorageService.editUserMovie(email,movie).then((movie)=>{
+                this.movie = movie;
+              });
             })
           }
         })
@@ -81,8 +91,10 @@ export class ModalViewMoviePage implements OnInit {
         this.alertService.presentAlert("Valoraras la pelicula con 2 estrellas","","Cancelar","Aceptar").then((data)=>{
           if(data){
             movie.valoration= [1,1,0,0,0]
-            this.localStorageService.editMovie(movie).then((data)=>{
-              this.movie = data;
+            this.localStorageService.getEmailUserSession().then((email)=>{
+              this.localStorageService.editUserMovie(email,movie).then((movie)=>{
+                this.movie = movie;
+              });
             })
           }
         })
@@ -91,8 +103,10 @@ export class ModalViewMoviePage implements OnInit {
         this.alertService.presentAlert("Valoraras la pelicula con 3 estrellas","","Cancelar","Aceptar").then((data)=>{
           if(data){
             movie.valoration= [1,1,1,0,0]
-            this.localStorageService.editMovie(movie).then((data)=>{
-              this.movie = data;
+            this.localStorageService.getEmailUserSession().then((email)=>{
+              this.localStorageService.editUserMovie(email,movie).then((movie)=>{
+                this.movie = movie;
+              });
             })
           }
         })
@@ -101,8 +115,10 @@ export class ModalViewMoviePage implements OnInit {
         this.alertService.presentAlert("Valoraras la pelicula con 4 estrellas","","Cancelar","Aceptar").then((data)=>{
           if(data){
             movie.valoration= [1,1,1,1,0]
-            this.localStorageService.editMovie(movie).then((data)=>{
-              this.movie = data;
+            this.localStorageService.getEmailUserSession().then((email)=>{
+              this.localStorageService.editUserMovie(email,movie).then((movie)=>{
+                this.movie = movie;
+              });
             })
           }
         })
@@ -112,8 +128,10 @@ export class ModalViewMoviePage implements OnInit {
         this.alertService.presentAlert("Valoraras la pelicula con 5 estrellas","","Cancelar","Aceptar").then((data)=>{
           if(data){
             movie.valoration= [1,1,1,1,1]
-            this.localStorageService.editMovie(movie).then((data)=>{
-              this.movie = data;
+            this.localStorageService.getEmailUserSession().then((email)=>{
+              this.localStorageService.editUserMovie(email,movie).then((movie)=>{
+                this.movie = movie;
+              });
             })
           }
         })

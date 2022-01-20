@@ -1,38 +1,22 @@
-<ion-header mode="ios">
+<ion-header mode="ios" *ngIf="flag">
   <ion-toolbar>
     <ion-title>Movies</ion-title>
-    <ion-buttons slot="start">
-      <ion-button (click)="buttonMenu()" color="medium"> 
-        <ion-icon slot="start" name="menu"></ion-icon>
+    <ion-buttons slot="end">
+      <ion-button (click)="buttonLogOut()" color="medium"> 
+        <ion-icon slot="start" name="log-out-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button (click)="buttonSerch()" color="medium">
-        <ion-icon slot="end" name="search"></ion-icon>
+    <ion-buttons slot="start">
+      <ion-button (click)="buttonUser()" color="medium">
+        <ion-avatar>
+          <img [src]="image" />
+        </ion-avatar>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-content>
-
-      <ion-item-sliding >
-        
-        <ion-item>
-          <ion-thumbnail>
-            <img class="imga" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-          </ion-thumbnail>
-        </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option (click)="unread(item)" color="success" class="itemOption">Editar</ion-item-option>
-      </ion-item-options>
-      </ion-item-sliding>
-    
-    
-</ion-content> -->
-
-<ion-content mode="ios" >
+<ion-content mode="ios" *ngIf="flag">
   <ion-card *ngFor="let item of movies" (click)="onClick(item)">
       <img conten class="imga" [src]="item.image">
       <ion-card-header>
@@ -56,8 +40,8 @@
       </div>
       
   </ion-card>
-</ion-content>
-<ion-footer mode="ios">
+</ion-content >
+<ion-footer mode="ios" *ngIf="flag">
   <div class="ion-text-center">
     <ion-icon  routerLink="/modal-add-movie"  slot="start" name="add-circle" color="medium" size="large"></ion-icon>
   </div>

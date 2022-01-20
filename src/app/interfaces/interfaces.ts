@@ -3,6 +3,7 @@ export interface User {
     userName: string;
     password: string;
     img:string
+    movies: Movie[];
 }
 export interface Movie {
     id: number;

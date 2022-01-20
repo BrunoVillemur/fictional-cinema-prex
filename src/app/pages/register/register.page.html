@@ -1,12 +1,14 @@
-<!-- <ion-header translucent="true" >
+<ion-header translucent="true" mode="ios" >
   <ion-toolbar>
-    <ion-buttons slot="start" >
-      <ion-back-button color="medium"></ion-back-button>
+    <ion-buttons slot="start" color="medium" >
+      <ion-button slot="start" (click)="buttonBack()"  fill="clear" shape="round" color="medium">
+        <ion-icon name="chevron-back-outline" color="medium" ></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header> -->
+</ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" mode="ios">
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12">

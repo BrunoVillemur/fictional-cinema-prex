@@ -1,6 +1,6 @@
 import { CustomToastService } from './../../services/custom-toast.service';
 import { LocalStorageService } from './../../services/local-storage.service';
-import { User } from './../../interfaces/interfaces';
+import { Movie, User } from './../../interfaces/interfaces';
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -58,12 +58,15 @@ export class RegisterPage implements OnInit {
     if (!this.registerForm.valid) {
       return false;
     } else {
+      const movies:Movie[] = this.localStorageService.avengerMovies();
       const userRegister:User = {
         email: this.registerForm.get("email")["value"],
         userName: this.registerForm.get("user")["value"],
         password: this.registerForm.get("password")["value"],
         img: '/assets/img/Placeholder_img_login.png',
+        movies: movies,
       };
+
       this.localStorageService.saveUser(userRegister).then((data)=>{
         if(data){
           this.router.navigate(["login"])
@@ -72,6 +75,10 @@ export class RegisterPage implements OnInit {
         }
       });
     }
+  }
+
+  buttonBack(){
+    this.router.navigate(["login"]);
   }
   
 }

@@ -1,19 +1,19 @@
-<ion-header>
+<ion-header mode="ios">
   <ion-toolbar>
     <ion-buttons slot="start" color="medium">
       <ion-button slot="start" (click)="buttonBack()"  fill="clear" shape="round">
-        <ion-icon name="chevron-back-outline"></ion-icon>
+        <ion-icon name="chevron-back-outline" color="medium"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="buttonDelete()">
-        <ion-icon slot="start" name="trash"></ion-icon>
+        <ion-icon slot="start" name="trash" color="medium"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="buttonEdit()">
-        <ion-icon *ngIf="edit == false" slot="start" name="pencil-outline"></ion-icon>
-        <ion-icon *ngIf="edit == true" slot="start" name="save-outline"></ion-icon>
+        <ion-icon *ngIf="edit == false" slot="start" name="pencil-outline" color="medium"></ion-icon>
+        <ion-icon *ngIf="edit == true" slot="start" name="save-outline" color="medium"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

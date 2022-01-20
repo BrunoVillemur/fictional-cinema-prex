@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class ModalAddMoviePage implements OnInit {
 
   imageMovies: string = '/assets/img/movieAdd.png'
+  flag:boolean = false;
 
   addMovieForm = this.formBuilder.group({
     title: [
@@ -39,6 +40,10 @@ export class ModalAddMoviePage implements OnInit {
               private customToastService: CustomToastService,) { }
 
   ngOnInit() {
+    // Active user validation
+    this.localStorageService.getEmailUserSession().then((emailSession)=>{
+      if(emailSession){this.flag = true;}else{this.router.navigate(["login"])}
+    });
   }
 
   onClick(){
@@ -49,10 +54,15 @@ export class ModalAddMoviePage implements OnInit {
       image: 'https://dummyimage.com/400x540/fff/aaa', //Se podría configurar un servicio y traerlo desde una api
       valoration: [0,0,0,0,0],
     };
-    this.localStorageService.saveMovie(movie).then(()=>{
-        this.router.navigate(["movies"])
-    });
 
+    this.localStorageService.getEmailUserSession().then((email)=>{
+      this.localStorageService.addUserMovie(email,movie);
+      this.router.navigate(["movies"])
+    })
+  }
+
+  buttonBack(){
+    this.router.navigate(["movies"])
   }
 
 }

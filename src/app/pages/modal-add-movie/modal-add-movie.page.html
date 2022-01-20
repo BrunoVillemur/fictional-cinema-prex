@@ -1,4 +1,14 @@
-<ion-content mode="ios">
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-title>Agregar</ion-title>
+    <ion-buttons slot="start" color="medium">
+      <ion-button slot="start" (click)="buttonBack()"  fill="clear" shape="round" >
+        <ion-icon name="chevron-back-outline" color="medium"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content mode="ios" *ngIf="flag">
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12">

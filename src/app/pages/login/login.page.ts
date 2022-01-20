@@ -49,19 +49,27 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
+  
+  ionViewWillEnter(){
+    this.localStorageService.getEmailUserSession().then((emailSession)=>{
+      if(emailSession){
+        this.router.navigate(["movies"])
+      }
+    })
+  }
+
 
   onClick(){
     const email = this.loginForm.get("email")["value"];
     const password = this.loginForm.get("password")["value"]
     
-    // console.log("Intentar iniciar seción")
-    // this.Toast.presentToast('User or Password Invalid','danger','top');
+    // login
     this.localStorageService.getUser(email).then((user)=>{
-      if(user === false){
+      if(user === undefined){
         this.Toast.presentToast('Email no válido','danger','top');
       }else{
         if(user.password === password){
-          this.localStorageService.avengerMovies();
+          this.localStorageService.session(user);
           this.router.navigate(["movies"])
         }else{
           this.Toast.presentToast('Contraseña Incorrecta','danger','top');
@@ -71,27 +79,26 @@ export class LoginPage implements OnInit {
   }
 
   togglePasswordMode() {
-    //cambiar tipo input
+    //change input type
     this.passwordTypeInput = this.passwordTypeInput === 'text' ? 'password' : 'text';
-    //obtener el input
+    //get input
     const nativeEl = this.passwordEye.nativeElement.querySelector('input');
-    //obtener el indice de la posición del texto actual en el input
+    //get the index of the current text position in the input
     const inputSelection = nativeEl.selectionStart;
-    //ejecuto el focus al input
+    //I execute the focus to the input
     nativeEl.focus();
-    //espero un milisegundo y actualizo la posición del indice del texto
+    //wait a millisecond and update the position of the text index
     setTimeout(() => {
        nativeEl.setSelectionRange(inputSelection, inputSelection);
     }, 1);
   }
 
+  // modal ForgotPass
   async showModal() {
     const modal = await this.modalCtrl.create({
       component: ModalForgotPassPage,
       cssClass: "my-custom-class",
       componentProps: {
-        nombre: "Bruno",
-        pais: "Argentina",
       },
     });
     await modal.present();
