@@ -2,7 +2,12 @@
   <ion-toolbar>
     <ion-title>Agregar</ion-title>
     <ion-buttons slot="start" color="medium">
-      <ion-button slot="start" (click)="buttonBack()"  fill="clear" shape="round" >
+      <ion-button
+        slot="start"
+        (click)="buttonBack()"
+        fill="clear"
+        shape="round"
+      >
         <ion-icon name="chevron-back-outline" color="medium"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -15,30 +20,42 @@
         <div class="form-container">
           <form [formGroup]="addMovieForm">
             <div class="img">
-              <img [src]="imageMovies">
-           </div>
+              <img [src]="imageMovies" />
+            </div>
             <ion-item class="Input">
-              <ion-input required id="title" 
-                name="title" 
-                formControlName="title" 
-                type="text" 
-                placeholder="Ingrese el Título" 
-                color="medium" 
-                style="text-align:center">
+              <ion-input
+                required
+                id="title"
+                name="title"
+                formControlName="title"
+                type="text"
+                placeholder="Ingrese el Título"
+                color="medium"
+                style="text-align: center"
+              >
               </ion-input>
             </ion-item>
             <ion-item class="Input">
-              <ion-textarea required id="description" 
-              name="description" 
-              formControlName="description" 
-              type="text" 
-              placeholder="Ingrese la descripción" 
-              color="medium" 
-              style="text-align:center">
+              <ion-textarea
+                required
+                id="description"
+                name="description"
+                formControlName="description"
+                type="text"
+                placeholder="Ingrese la descripción"
+                color="medium"
+                style="text-align: center"
+              >
               </ion-textarea>
-            </ion-item> 
-            <ion-button  (click)="onClick()" expand="block" shape="round" color="medium" [disabled]="addMovieForm.invalid">
-                Agregar Película
+            </ion-item>
+            <ion-button
+              (click)="onClick()"
+              expand="block"
+              shape="round"
+              color="medium"
+              [disabled]="addMovieForm.invalid"
+            >
+              Agregar Película
             </ion-button>
           </form>
         </div>

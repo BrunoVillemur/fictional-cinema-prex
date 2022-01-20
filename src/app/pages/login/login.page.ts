@@ -6,82 +6,75 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
   imglogin: string = '/assets/img/Placeholder_img_login.png';
 
-  @ViewChild('passwordEyeRegister', { read: ElementRef }) passwordEye: ElementRef;
-  passwordTypeInput  =  'password';
-  iconpassword  =  'eye-off';
+  @ViewChild('passwordEyeRegister', { read: ElementRef })
+  passwordEye: ElementRef;
+  passwordTypeInput = 'password';
+  iconpassword = 'eye-off';
 
   loginForm = this.formBuilder.group({
     email: [
-      "",
+      '',
       [
         Validators.required,
-        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"),
-
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
       ],
     ],
     password: [
-      "",
-      [
-        Validators.required,
-        Validators.maxLength(20),
-        Validators.minLength(3),
-      ],
+      '',
+      [Validators.required, Validators.maxLength(20), Validators.minLength(3)],
     ],
-    
   });
 
-  constructor(private formBuilder: FormBuilder,
-              public Toast:CustomToastService, 
-              private modalCtrl: ModalController,
-              private localStorageService: LocalStorageService,
-              private router: Router) {
-                }
+  constructor(
+    private formBuilder: FormBuilder,
+    public Toast: CustomToastService,
+    private modalCtrl: ModalController,
+    private localStorageService: LocalStorageService,
+    private router: Router
+  ) {}
 
-  ngOnInit() {
-  }
-  
-  ionViewWillEnter(){
+  ngOnInit() {}
+
+  ionViewWillEnter() {
     //session
-    this.localStorageService.getEmailUserSession().then((emailSession)=>{
-      if(emailSession){
-        this.router.navigate(["movies"])
+    this.localStorageService.getEmailUserSession().then((emailSession) => {
+      if (emailSession) {
+        this.router.navigate(['movies']);
       }
-    })
+    });
   }
 
+  onClick() {
+    const email = this.loginForm.get('email')['value'];
+    const password = this.loginForm.get('password')['value'];
 
-  onClick(){
-    const email = this.loginForm.get("email")["value"];
-    const password = this.loginForm.get("password")["value"]
-    
     // login
-    this.localStorageService.getUser(email).then((user)=>{
-      if(user === undefined){
-        this.Toast.presentToast('Email no válido','danger','top');
-      }else{
-        if(user.password === password){
+    this.localStorageService.getUser(email).then((user) => {
+      if (user === undefined) {
+        this.Toast.presentToast('Email no válido', 'danger', 'top');
+      } else {
+        if (user.password === password) {
           this.localStorageService.session(user);
-          this.router.navigate(["movies"])
-        }else{
-          this.Toast.presentToast('Contraseña Incorrecta','danger','top');
+          this.router.navigate(['movies']);
+        } else {
+          this.Toast.presentToast('Contraseña Incorrecta', 'danger', 'top');
         }
       }
-    })
+    });
   }
 
   togglePasswordMode() {
     //change input type
-    this.passwordTypeInput = this.passwordTypeInput === 'text' ? 'password' : 'text';
+    this.passwordTypeInput =
+      this.passwordTypeInput === 'text' ? 'password' : 'text';
     //get input
     const nativeEl = this.passwordEye.nativeElement.querySelector('input');
     //get the index of the current text position in the input
@@ -90,7 +83,7 @@ export class LoginPage implements OnInit {
     nativeEl.focus();
     //wait a millisecond and update the position of the text index
     setTimeout(() => {
-       nativeEl.setSelectionRange(inputSelection, inputSelection);
+      nativeEl.setSelectionRange(inputSelection, inputSelection);
     }, 1);
   }
 
@@ -98,12 +91,9 @@ export class LoginPage implements OnInit {
   async showModal() {
     const modal = await this.modalCtrl.create({
       component: ModalForgotPassPage,
-      cssClass: "my-custom-class",
-      componentProps: {
-      },
+      cssClass: 'my-custom-class',
+      componentProps: {},
     });
     await modal.present();
   }
-  
-  
 }

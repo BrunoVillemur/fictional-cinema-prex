@@ -8,23 +8,27 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./modal-forgot-pass.page.scss'],
 })
 export class ModalForgotPassPage implements OnInit {
+  imageMoster: String = '/assets/img/monster-forgot-pass.png';
 
-  imageMoster: String = '/assets/img/monster-forgot-pass.png'
+  constructor(
+    public Toast: CustomToastService,
+    private modalCtrl: ModalController
+  ) {}
 
-  constructor(public Toast:CustomToastService, private modalCtrl: ModalController) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  dismissModal(){
+  dismissModal() {
     this.modalCtrl.dismiss();
   }
 
-  onClick(){
-    this.Toast.presentToast("Se ha enviado el mail de recuperación","medium","bottom");
+  onClick() {
+    this.Toast.presentToast(
+      'Se ha enviado el mail de recuperación',
+      'medium',
+      'bottom'
+    );
     setTimeout(() => {
       this.dismissModal();
     }, 2000);
   }
-
 }

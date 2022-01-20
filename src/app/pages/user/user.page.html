@@ -2,7 +2,13 @@
   <ion-toolbar>
     <ion-title>{{user.userName}}</ion-title>
     <ion-buttons slot="start" color="medium">
-      <ion-button slot="start" (click)="buttonBack()"  fill="clear" shape="round" color="medium">
+      <ion-button
+        slot="start"
+        (click)="buttonBack()"
+        fill="clear"
+        shape="round"
+        color="medium"
+      >
         <ion-icon name="chevron-back-outline" color="medium"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -22,11 +28,15 @@
           <div class="center">
             <p>Selecciona una imágen de perfil!</p>
           </div>
-           <div class="center">
-              <ion-avatar *ngFor="let item of image" (click)="onClick(item)" class="avatar">
-                <img [src]="item"/>
-              </ion-avatar>
-           </div>
+          <div class="center">
+            <ion-avatar
+              *ngFor="let item of image"
+              (click)="onClick(item)"
+              class="avatar"
+            >
+              <img [src]="item" />
+            </ion-avatar>
+          </div>
         </div>
       </ion-col>
     </ion-row>

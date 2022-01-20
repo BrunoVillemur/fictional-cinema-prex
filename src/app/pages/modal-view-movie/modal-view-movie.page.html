@@ -1,7 +1,12 @@
 <ion-header mode="ios">
   <ion-toolbar>
     <ion-buttons slot="start" color="medium">
-      <ion-button slot="start" (click)="buttonBack()"  fill="clear" shape="round">
+      <ion-button
+        slot="start"
+        (click)="buttonBack()"
+        fill="clear"
+        shape="round"
+      >
         <ion-icon name="chevron-back-outline" color="medium"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -12,42 +17,85 @@
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="buttonEdit()">
-        <ion-icon *ngIf="edit == false" slot="start" name="pencil-outline" color="medium"></ion-icon>
-        <ion-icon *ngIf="edit == true" slot="start" name="save-outline" color="medium"></ion-icon>
+        <ion-icon
+          *ngIf="edit == false"
+          slot="start"
+          name="pencil-outline"
+          color="medium"
+        ></ion-icon>
+        <ion-icon
+          *ngIf="edit == true"
+          slot="start"
+          name="save-outline"
+          color="medium"
+        ></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-
-<ion-content mode='ios'>
+<ion-content mode="ios">
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12">
-        <div >
+        <div>
           <ion-title *ngIf="edit == false">{{movie.Titulo}}</ion-title>
-          <ion-textarea *ngIf="edit == true" [placeholder]="titleChange" [value]="titleChange" [(ngModel)]="titleChange" class="textareaT"></ion-textarea>
+          <ion-textarea
+            *ngIf="edit == true"
+            [placeholder]="titleChange"
+            [value]="titleChange"
+            [(ngModel)]="titleChange"
+            class="textareaT"
+          ></ion-textarea>
         </div>
         <div class="center">
-          <img class="img" [src]="movie.image">
+          <img class="img" [src]="movie.image" />
         </div>
         <div class="center">
           <div class="star-container">
-            <div class="rating" *ngFor="let star of movie.valoration, let i=index">
-              <ion-button *ngIf="star === 1" class="btnRating" (click)="calification(i)" fill="clear" shape="round" >
-                 <ion-icon *ngIf="star === 1"   name="star" color="warning"></ion-icon>
+            <div
+              class="rating"
+              *ngFor="let star of movie.valoration, let i=index"
+            >
+              <ion-button
+                *ngIf="star === 1"
+                class="btnRating"
+                (click)="calification(i)"
+                fill="clear"
+                shape="round"
+              >
+                <ion-icon
+                  *ngIf="star === 1"
+                  name="star"
+                  color="warning"
+                ></ion-icon>
               </ion-button>
-              <ion-button *ngIf="star === 0" class="btnRating" (click)="calification(i)" fill="clear" shape="round">
-                <ion-icon *ngIf="star === 0" class="rating"  name="star-outline" color="medium"></ion-icon>
-             </ion-button>
+              <ion-button
+                *ngIf="star === 0"
+                class="btnRating"
+                (click)="calification(i)"
+                fill="clear"
+                shape="round"
+              >
+                <ion-icon
+                  *ngIf="star === 0"
+                  class="rating"
+                  name="star-outline"
+                  color="medium"
+                ></ion-icon>
+              </ion-button>
             </div>
           </div>
         </div>
         <div class="center">
-          <p *ngIf="edit == false">
-            {{movie.Descripcion}}
-          </p>
-          <ion-textarea *ngIf="edit == true" [placeholder]="descriptionChange" [value]="descriptionChange" [(ngModel)]="descriptionChange" class="textareaD">  
+          <p *ngIf="edit == false">{{movie.Descripcion}}</p>
+          <ion-textarea
+            *ngIf="edit == true"
+            [placeholder]="descriptionChange"
+            [value]="descriptionChange"
+            [(ngModel)]="descriptionChange"
+            class="textareaD"
+          >
           </ion-textarea>
         </div>
       </ion-col>

@@ -3,46 +3,74 @@
     <ion-title>login</ion-title>
   </ion-toolbar>
 </ion-header> -->
-<ion-content mode='ios'>
+<ion-content mode="ios">
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12">
         <div class="form-container">
           <form [formGroup]="loginForm">
             <ion-avatar class="image-center">
-              <img [src]="imglogin">
+              <img [src]="imglogin" />
             </ion-avatar>
             <ion-item class="roundedInput">
-              <ion-input required id="email" 
-                name="email" 
-                formControlName="email" 
-                type="text" 
-                placeholder="Email" 
-                placeholder="email" 
-                color="medium" 
-                style="text-align:center">
+              <ion-input
+                required
+                id="email"
+                name="email"
+                formControlName="email"
+                type="text"
+                placeholder="Email"
+                placeholder="email"
+                color="medium"
+                style="text-align: center"
+              >
               </ion-input>
             </ion-item>
             <ion-item class="roundedInput">
-              <ion-input type="password" required name="password" formControlName="password"  clearOnEdit="false" #passwordEyeRegister  [type]="passwordTypeInput"   clearOnEdit="false" placeholder="Contraseña" color="medium" style="text-align:center"></ion-input>
-              <button  item-end  class="btn_eye_icon"  (click)="togglePasswordMode()" >
-                <ion-icon  [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
+              <ion-input
+                type="password"
+                required
+                name="password"
+                formControlName="password"
+                clearOnEdit="false"
+                #passwordEyeRegister
+                [type]="passwordTypeInput"
+                clearOnEdit="false"
+                placeholder="Contraseña"
+                color="medium"
+                style="text-align: center"
+              ></ion-input>
+              <button
+                item-end
+                class="btn_eye_icon"
+                (click)="togglePasswordMode()"
+              >
+                <ion-icon
+                  [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"
+                ></ion-icon>
               </button>
-            </ion-item> 
-            <ion-button  (click)="onClick()" expand="block" shape="round" color="medium">
-                Entrar
+            </ion-item>
+            <ion-button
+              (click)="onClick()"
+              expand="block"
+              shape="round"
+              color="medium"
+            >
+              Entrar
             </ion-button>
           </form>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <div class="center" >
+  <div class="center">
     <ion-label routerLink="/register">Crear Cuenta</ion-label>
   </div>
 </ion-content>
 <ion-footer class="ion-no-border">
   <div class="center">
-    <ion-label (click)="showModal()" color="medium">¿Has olvidado la contraseña?</ion-label>
+    <ion-label (click)="showModal()" color="medium"
+      >¿Has olvidado la contraseña?</ion-label
+    >
   </div>
 </ion-footer>
