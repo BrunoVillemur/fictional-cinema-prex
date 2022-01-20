@@ -1,0 +1,48 @@
+<ion-header mode="ios" *ngIf="flag">
+  <ion-toolbar>
+    <ion-title>Movies</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="buttonLogOut()" color="medium"> 
+        <ion-icon slot="start" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="buttonUser()" color="medium">
+        <ion-avatar>
+          <img [src]="image" />
+        </ion-avatar>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content mode="ios" *ngIf="flag">
+  <ion-card *ngFor="let item of movies" (click)="onClick(item)">
+      <img conten class="imga" [src]="item.image">
+      <ion-card-header>
+        <ion-title class="aa">{{item.Titulo}}
+          <ion-icon slot="start" name="add"></ion-icon>
+        </ion-title>
+      </ion-card-header>
+      <div class="description">
+        <p class="description">{{item.Descripcion}}</p>
+      </div>
+      <div>
+        <div class="lebel-rating">
+          <p>Rating:</p>
+        </div>
+        <div class="star-container">
+          <div class="rating"  *ngFor="let star of item.valoration">
+            <ion-icon *ngIf="star === 1" class="rating"  name="star" color="warning"></ion-icon>
+            <ion-icon *ngIf="star === 0" class="rating"  name="star-outline"></ion-icon>
+          </div>
+        </div>
+      </div>
+      
+  </ion-card>
+</ion-content >
+<ion-footer mode="ios" *ngIf="flag">
+  <div class="ion-text-center">
+    <ion-icon  routerLink="/modal-add-movie"  slot="start" name="add-circle" color="medium" size="large"></ion-icon>
+  </div>
+</ion-footer>

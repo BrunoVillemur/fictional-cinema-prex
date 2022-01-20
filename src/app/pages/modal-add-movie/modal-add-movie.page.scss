@@ -1,0 +1,18 @@
+.img{
+    margin: auto;
+    margin-top: 10%;
+    max-width: 50%;
+    max-height: 50%;
+}
+.Input{
+    --border-color: var(--ion-color-medium-shade);
+    --border-radius: 25px;
+    --border-width: 1px;
+    --box-shadow: 2px gray;
+    --highlight-height: 0;
+    --background: #f8f9fa;
+    margin-top: 2%;
+}
+.button{
+    margin-top: 2%;
+}

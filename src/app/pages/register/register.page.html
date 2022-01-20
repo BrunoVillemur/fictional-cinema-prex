@@ -1,0 +1,59 @@
+<ion-header translucent="true" mode="ios" >
+  <ion-toolbar>
+    <ion-buttons slot="start" color="medium" >
+      <ion-button slot="start" (click)="buttonBack()"  fill="clear" shape="round" color="medium">
+        <ion-icon name="chevron-back-outline" color="medium" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" mode="ios">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <div class="form-container">
+          <form #formRegister="ngForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+          <ion-avatar class="img-registration">
+            <img [src]="registerImg">
+          </ion-avatar>
+          <ion-item class="roundedInput">
+            <ion-input 
+                       required id="email" 
+                       name="email" 
+                       formControlName="email" 
+                       type="text" 
+                       placeholder="Email" 
+                       color="medium" 
+                       style="text-align:center">
+            </ion-input>
+          </ion-item>
+          <!-- Error messages -->
+          <span *ngIf="!registerForm.controls.email.valid &&
+          registerForm.controls.email.dirty"
+            class="validator-error">
+              Debe ingresar un mail valido.
+          </span>
+          <ion-item class="roundedInput">
+            <ion-input  required name="user" formControlName="user" type="text" placeholder="Usuario" color="medium" style="text-align:center"></ion-input>
+          </ion-item>
+          <!-- Error messages -->
+          <span *ngIf="!registerForm.controls.user.valid &&
+          registerForm.controls.user.dirty"
+            class="validator-error">
+              El usuario debe contener al menos 3 caracteres y no debe contener caracteres especiales.
+          </span>
+          <ion-item class="roundedInput">
+            <ion-input   type="password" required name="password" formControlName="password"  clearOnEdit="false" placeholder="Contraseña" color="medium" style="text-align:center"></ion-input>
+          </ion-item> 
+          <div>
+            <ion-button expand="block" shape="round" color="medium" type="submit" [disabled]="registerForm.invalid">
+            Registrarse
+          </ion-button>
+          </div>
+        </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
