@@ -1,0 +1,38 @@
+<ion-header class="ion-no-border" translucent  color="dark">
+  <ion-toolbar >
+    <ion-buttons slot="start" >
+      <ion-button slot="start" (click)="dismissModal()"  fill="clear" shape="round">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Restablecer Contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <div>
+          <div class="img">
+             <img [src]="imageMoster">
+          </div>
+          <div>
+            <ion-item class="Input">
+              <ion-input 
+                         placeholder="Ingrese su email" 
+                         color="medium" 
+                         style="text-align:center">
+              </ion-input>
+            </ion-item>
+          </div>
+          <div>
+            <ion-button expand="block" (click)="onClick()" shape="round" color="medium" class="button" type="submit">
+              Restablecer Contraseña
+            </ion-button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
