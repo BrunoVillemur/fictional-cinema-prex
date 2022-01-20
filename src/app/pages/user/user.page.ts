@@ -24,7 +24,7 @@ export class UserPage implements OnInit {
 
   constructor(private router: Router,
               private localStorageService: LocalStorageService,
-  ) { }
+  ) {  }
 
   ngOnInit() {
   }

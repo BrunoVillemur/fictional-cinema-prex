@@ -11,13 +11,12 @@ export class LocalStorageService {
 
   private _storage: Storage | null = null;
   private users: User[]=[];
- 
+  
 
   
   constructor(private storage: Storage) {
     this.init();
     this.getUsers();
-    this.rootUser();
   }
   
   async init() {
@@ -78,18 +77,6 @@ export class LocalStorageService {
     const user = this.users.find(item => item.email === email);
     user.img = image;
     this.storage.set('UsersCinema',this.users);
-  }
-
-  async rootUser(){
-    // function only to create a root user of the system
-    const user:User ={
-      email: 'root@root',
-      userName: 'Root',
-      password: 'root',
-      img:'/assets/img/Placeholder_img_login.png',
-      movies: this.avengerMovies(),
-    }
-    this.saveUser(user);
   }
 
    // Movies

@@ -1,4 +1,3 @@
-import { User } from './../../interfaces/interfaces';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LocalStorageService } from './../../services/local-storage.service';
 import { ModalForgotPassPage } from './../modal-forgot-pass/modal-forgot-pass.page';
@@ -45,12 +44,14 @@ export class LoginPage implements OnInit {
               public Toast:CustomToastService, 
               private modalCtrl: ModalController,
               private localStorageService: LocalStorageService,
-              private router: Router) { }
+              private router: Router) {
+                }
 
   ngOnInit() {
   }
   
   ionViewWillEnter(){
+    //session
     this.localStorageService.getEmailUserSession().then((emailSession)=>{
       if(emailSession){
         this.router.navigate(["movies"])
